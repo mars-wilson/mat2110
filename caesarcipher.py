@@ -7,6 +7,7 @@ Encode the characters in the character set given.
 
 http://scienceblogs.com/goodmath/2008/08/11/rotating-ciphers/
 
+Fun!
 """
 
 CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ,.\'\"?!'
