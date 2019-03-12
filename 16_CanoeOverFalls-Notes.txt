@@ -1,0 +1,32 @@
+You have 5 remaining misses.
+_ _ _ _ _ _ _
+Pick a letter or guess the word:  r
+Nice.  We have an r.
+_ r _ _ r _ _
+You have 5 remaining misses.
+Pick a letter or guess a word: i
+There is no i. Moo.
+_ r _ _ r _ _
+You have 4 remaining misses.
+Pick a letter or guess a word: o
+Truly amazing.  We have an o.
+_ r o _ r _ _
+You have 4 remaining misses.
+Pick a letter or guess a word: n
+There is no n. You suck.
+_ r o _ r _ _
+You have 3 remaining misses.
+Pick a letter or guess a word: arogrit
+'arogrit' isn't even in my word list.  You're a bonehead.
+_ r o _ r _ _
+You have 2 remaining misses.
+Pick a letter or guess a word: a
+Dude.  We have an a.
+_ r o _ r a _
+You have 2 remaining misses.
+Pick a letter or guess a word: program
+
+Classic.  You're right!
+YOU ARE SAVED!
+
+
