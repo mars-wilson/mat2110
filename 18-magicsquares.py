@@ -2,21 +2,21 @@
 
 def getCandidate():
     """
-It takes no parameters
-It returns a list of lists
+    It takes no parameters
+    It returns a list of lists
 
-First examples.
-Enter your square.
-One line entries.
-When you're done type a blank line.
-> 1 3 fred
-> 2
-> <blank line>
-should give back:
-[ [1, 3, 'fred']   [ 2 ] ]
+    First examples.
+    Enter your square.
+    One line entries.
+    When you're done type a blank line.
+    > 1 3 fred
+    > 2
+    > <blank line>
+    should give back:
+    [ [1, 3, 'fred']   [ 2 ] ]
 
 
-    :return:
+    :return: the candidate input by the user
     """
 
     candidate = []
@@ -41,6 +41,7 @@ def test_getCandidate():
     candidate = getCandidate()
     print(candidate)
 
+
 def isCandidateIntegers(something):
     try:
         for rownum in range(len(something)):
@@ -54,6 +55,7 @@ def isCandidateIntegers(something):
 def test_isCandidateIntegers():
     print("False", isCandidateIntegers( [["3","a"],[5]]))
     print("True", isCandidateIntegers( [["3","2"],["5"]]))
+
 
 def isItSquare(cand):
     # the number of lists is the same as the number of numbers in each list
@@ -70,16 +72,24 @@ def test_isItSquare():
     print("FALSE", isItSquare([[1, 2], [3]]))
 
 
-def analyzeCandidate(c):
-    result = True  # assume it is a magic square, prove otherwise
-    if not isItSquare(c):
-        result = False
-        print("This is not square. No magic square here.")
-    #magicSum = computeMagicSum(c)
-    #if not allRowsSumToMagicSum(c, magicSum):
-    #    result = False
 
-    return result
+
+
+def get_magicNumber(someSquare):
+    """ needs a list of lists maybe magic square, gives back an integer"""
+    # someSquare may be ... [ [ 2,7,6],[9,5,1],[4,3,8]]
+    topRow = someSquare[0]
+    return sum(topRow)
+    total = 0
+    for num in topRow:
+        total = total + num
+    return total
+
+def test_getMagicNumber():
+    print("15", get_magicNumber( [ [ 2,7,6],[9,5,1],[4,3,8]]) )
+    #print("Unknown", get_magicNumber( getCandidate() ) )
+
+
 
 def isMagicByRows(candidate, magicSum):
     """ step thru rows and see if they add up tomagicSum"""
@@ -94,7 +104,27 @@ def isMagicByRows(candidate, magicSum):
     return True
 
 
+def test_isMagicByRows():
+    print("True ?", isMagicByRows([ [ 1 ]], 1 )) # is this a magic square?
+    print("True ?", isMagicByRows([[4,9,2],[3,5,7],[8,1,6]], 15))  # magic square from wikipedia
+    print("False ?", isMagicByRows([[4, 9, 1], [3, 5, 7], [8, 1, 6]], 15))  # bad square
 
+
+def analyzeCandidate(c):
+    result = True  # assume it is a magic square, prove otherwise
+    if not isItSquare(c):
+        result = False
+        print("This is not square. No magic square here.")
+    if not isCandidateIntegers(c):
+        result = False
+        print("not all integers, silly!")
+        return False  # quit - no point causing more errors if we're not all integers.
+    magicSum = get_magicNumber(c)
+    if not isMagicByRows(c, magicSum):
+        result = False
+        print("Not all rows sum to the same thing.")
+
+    return result
 
 
 def main():
@@ -123,22 +153,15 @@ def main():
 
 
 
-def get_magicNumber(someSquare):
-    """ needs a list of lists maybe magic square, gives back an integer"""
-    # someSquare may be ... [ [ 2,7,6],[9,5,1],[4,3,8]]
-    topRow = someSquare[0]
-    return sum(topRow)
-    total = 0
-    for num in topRow:
-        total = total + num
-    return total
-
-def test_getMagicNumber():
-    print("15", get_magicNumber( [ [ 2,7,6],[9,5,1],[4,3,8]]) )
-    #print("Unknown", get_magicNumber( getCandidate() ) )
+TESTING = True
 
 if __name__ == '__main__':
-    main()
-    #test_isItSquare()
-    #test_getMagicNumber()
-    #test_isCandidateIntegers()
+    if not TESTING:
+        main()
+    else:
+        # test_getCandidate()
+        test_isItSquare()
+        test_getMagicNumber()
+        test_isCandidateIntegers()
+        test_isMagicByRows()
+
