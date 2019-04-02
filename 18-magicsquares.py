@@ -110,6 +110,47 @@ def test_isMagicByRows():
     print("False ?", isMagicByRows([[4, 9, 1], [3, 5, 7], [8, 1, 6]], 15))  # bad square
 
 
+def isMagicByForwardSlashDiag(c, magicNum):
+    """
+    4 9 *2
+    3 *5 7
+    *8 1 6
+    """
+    size = len(c[0])
+    col = size - 1
+    sum = 0
+    for row in range(size):
+        sum += c[row][col]
+        col = col - 1
+    if sum != magicNum:
+        return False
+    return True
+
+
+def allNumbersUnique(c):
+    """
+    [ [ 1,2], [3, 4] ]   True
+    [ [ 1, 1], [3, 4]]  False ... missing a 2.  1 is duplicated.
+    [ [1, 3], [4, 5]]  True = 2 is missing. But unique
+    [ [ 2, 1], [4, 3] ]  True
+
+    """
+    numbersSeen  = []
+    # step through the square and see if I've seen any of the numbers before
+    for row in range(len(c)):
+        for col in range(len(c[row])):
+            element = c[row][col]
+            if element in numbersSeen:
+                return False
+            else:
+                numbersSeen.append(element)
+    return True
+
+def test_allNumbersUnique():
+    print("True? ", allNumbersUnique([ [ 1,2], [3, 4] ]) )
+    print("False? ", allNumbersUnique([ [ 1, 1], [3, 4]]))
+
+
 def analyzeCandidate(c):
     result = True  # assume it is a magic square, prove otherwise
     if not isItSquare(c):
@@ -123,7 +164,17 @@ def analyzeCandidate(c):
     if not isMagicByRows(c, magicSum):
         result = False
         print("Not all rows sum to the same thing.")
-
+    if not isMagicByCols(c, magicSum):
+        result = False
+        print("Column mismatch")
+    if not isMagicByForwardSlashDiag(c, magicSum):
+        result = False
+        print("forward diagonal bad")
+    if not isMagicByBackwardSlashDiag(c, magicSum):
+        result = False
+        print("back diagonal bad")
+    if not allNumbersInSequence(c, magicSum):
+        print("Note:  not using a sequence")
     return result
 
 
@@ -164,4 +215,7 @@ if __name__ == '__main__':
         test_getMagicNumber()
         test_isCandidateIntegers()
         test_isMagicByRows()
+        test_allNumbersUnique()
+
+
 
