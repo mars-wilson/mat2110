@@ -5,6 +5,8 @@ interactively.  You can learn a lot by studying this code!
 
 import turtle, math, random, time
 
+
+# I needed time in milliseconds.  Took a little bit of research.
 def msTime():
     return int(time.perf_counter()*1000)
 
@@ -106,8 +108,6 @@ class Creature(turtle.Turtle):
         self.boxHeight = boxHeight  if boxHeight is not None else 200
 
 
-    # these set up the event handler functions to use with lambdas
-    # They don't do anything at all.  Extend them to do something.
     # these set up the event handler functions to use with lambdas
     # They don't do anything at all.  Extend them to do something.
 

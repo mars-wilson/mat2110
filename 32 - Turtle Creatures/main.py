@@ -49,13 +49,13 @@ def announceLevel(levelNum):
         Game.writeTurtle.write("Level {} ".format(levelNum) + messageStage,
                                align="center", font=('Arial',18,"normal"))
         time.sleep(messageDelay)
-    Game.updateScore()
+    updateScore()
 
 def quit():
     """ quit the game """
     Game.wn.bye()
 
-def spawn():
+def spawn(level):
     monster = creature.Monster(x=random.randint(-150, 150), y=random.randint(-150, 150))
     monster.chooseNewDirection()
     Game.allCreatures.append(monster)
