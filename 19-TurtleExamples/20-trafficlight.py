@@ -1,9 +1,6 @@
 import turtle
-turtle.setup(300,300)
+turtle.setup(400,400)
 screen = turtle.Screen()
-
-move_speed = 10  # a constant
-
 
 def set_light_properties(somet, color, x, y):
     somet.speed(0)  # make turtle move instantly
